@@ -145,3 +145,125 @@ Kali Application
        |
        v
  Internal Network
+
+ ### Task 5 — Add a Route Through the Tunnel
+
+First, identify the internal network that is reachable
+through the Agent.
+
+For example:
+
+`10.10.10.0/24`
+
+Add a route to that network through the Ligolo-ng TUN interface.
+
+On Kali:
+
+```
+sudo ip route add 10.10.10.0/24 dev ligolo
+```
+
+Check the routing table:
+
+`ip route`
+
+You should see a route similar to:
+
+`10.10.10.0/24 dev ligolo`
+
+The traffic path is now:
+
+Kali
+  |
+  | Route: 10.10.10.0/24
+  v
+TUN Interface
+  |
+  v
+Ligolo-ng Proxy
+  |
+  | Tunnel
+  v
+Ligolo-ng Agent
+  |
+  v
+10.10.10.0/24
+
+### Task 6 — Test Connectivity Through the Tunnel
+
+Choose an authorized host inside the internal network.
+
+For example:
+
+`10.10.10.10`
+
+First, test basic connectivity:
+
+```
+ping -c 3 10.10.10.10
+```
+
+Then check whether an authorized TCP service is reachable:
+
+```
+nc -vz 10.10.10.10 80
+```
+
+If the route and tunnel are configured correctly,
+the traffic should travel through the Ligolo-ng tunnel.
+
+The traffic path is:
+
+Kali
+  |
+  v
+TUN Interface
+  |
+  v
+Ligolo-ng Proxy
+  |
+  | Tunnel
+  v
+Ligolo-ng Agent
+  |
+  v
+Internal Host
+  |
+  +-- TCP Service :80
+
+## Questions
+
+Answer the following questions:
+
+1. What is the difference between the Ligolo-ng Proxy and Agent?
+2. What is a TUN interface?
+3. Why does Ligolo-ng use a TUN interface?
+4. What happens when a route to the internal network is added?
+5. Why can Kali access a network that was previously unreachable?
+6. What is the role of the Agent machine?
+7. What happens if the Ligolo-ng tunnel is disconnected?
+8. How is Ligolo-ng different from SSH `-L` forwarding?
+9. How is Ligolo-ng different from an SSH SOCKS proxy?
+10. What is pivoting?
+
+## Success Criteria
+
+You should be able to explain:
+
+`Kali → TUN → Ligolo-ng Proxy → Tunnel → Agent → Internal Network`
+
+You should understand that Ligolo-ng creates a virtual
+network path that allows traffic to be routed through
+a pivot machine.
+
+You should also be able to explain the relationship between:
+
+`TUN interface`
+
+`Routing table`
+
+`Ligolo-ng tunnel`
+
+`Agent`
+
+`Internal network`
