@@ -6,20 +6,18 @@ Beginner
 
 ## Objective
 
-Understand the difference between an IP address, a port,
-a network connection and a tunnel.
+Understand the difference between an IP address, a port, a network connection and a tunnel.
 
 ## Scenario
 
 You have two machines:
 
-- Kali — test machine
-- Server — laboratory machine
+- **Kali** — test machine
+- **Server** — laboratory machine
 
 The Server is running a TCP service.
 
-Your task is to connect to this service and understand
-how the connection works.
+Your task is to connect to this service and understand how the connection works.
 
 ## Topology
 
@@ -31,8 +29,7 @@ Kali
   v
 Server
   |
-  +-- TCP service :8080
-Tasks
+  +-- TCP service :8080Tasks
 Task 1 — Find the Server IP
 
 On the Server run:
@@ -46,6 +43,7 @@ Task 2 — Check the service
 From Kali:
 
 nc -vz <SERVER_IP> 8080
+
 Task 3 — Inspect the connection
 
 On Kali:
@@ -74,5 +72,4 @@ Protocol
      =
 Network connection
 
-and explain why a tunnel can provide
-another path for network traffic.
+And explain why a tunnel can provide another path for network traffic.
