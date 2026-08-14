@@ -147,3 +147,79 @@ Tunnel
    ↓
 Destination
 ```
+
+### Task 6 — Troubleshooting Checklist
+
+Use the following checklist when a tunnel does not work:
+
+1. Check the network interfaces:
+
+`ip addr`
+
+2. Check the routing table:
+
+`ip route`
+
+3. Check listening ports:
+
+`ss -lnt`
+
+4. Check active connections:
+
+`ss -tn`
+
+5. Verify that the tunnel session is established.
+
+6. Verify that the destination host is reachable.
+
+7. Verify that the destination service is listening.
+
+Work through the checklist from top to bottom instead of
+changing multiple settings at the same time.
+
+## Questions
+
+Answer the following questions:
+
+1. What does `ip addr` show?
+2. What does `ip route` show?
+3. What is the difference between `ss -lnt` and `ss -tn`?
+4. Why is a TUN interface not enough by itself?
+5. Why is a routing table important for a tunnel?
+6. How can you determine whether an SSH connection is established?
+7. How can you determine whether a service is listening?
+8. What could cause a tunnel to exist but traffic still fail?
+9. Why should troubleshooting be performed layer by layer?
+10. What is the first thing you would check if a tunnel stopped working?
+
+## Success Criteria
+
+You should be able to troubleshoot a tunnel using:
+
+```
+ip addr
+```
+
+```
+ip route
+```
+
+```
+ss -lnt
+```
+
+```
+ss -tn
+```
+
+You should be able to determine whether a problem is related to:
+
+`Network Interface`
+
+`Routing`
+
+`Listening Port`
+
+`Tunnel`
+
+`Destination Service`
